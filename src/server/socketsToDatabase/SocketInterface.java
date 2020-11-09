@@ -1,6 +1,8 @@
 package server.socketsToDatabase;
 
+import shared.User;
+
 public interface SocketInterface
 {
-  String getUsername();
+  User getUsername();
 }

@@ -1,5 +1,6 @@
 package client.networking;
 
+import shared.User;
 import transferobjects.Request;
 
 import java.beans.PropertyChangeSupport;
@@ -17,11 +18,11 @@ public class SocketClient implements Client
   }
 
 
-  @Override public String getUsername()
+  @Override public User getUsername()
   {
     try {
       Request response = request(null, "Username");
-      return (String)response.getArg();
+      return (User)response.getArg();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }

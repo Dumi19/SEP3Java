@@ -1,6 +1,7 @@
 package server.networking;
 
 import server.model.Model;
+import shared.User;
 import transferobjects.Request;
 
 import java.beans.PropertyChangeEvent;
@@ -35,7 +36,7 @@ public class Handler implements Runnable
     try {
       Request request = (Request) inFromClient.readObject();
       if("Username".equals(request.getType())) {
-        String result = model.getUsername();
+        User result = model.getUsername();
         outToClient.writeObject(new Request("Username", result));
       }
     } catch (IOException | ClassNotFoundException e) {
