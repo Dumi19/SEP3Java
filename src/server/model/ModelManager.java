@@ -4,6 +4,8 @@ import client.networking.Client;
 import server.socketsToDatabase.SocketInterface;
 import shared.User;
 
+import java.io.IOException;
+
 public class ModelManager implements Model
 {
   private SocketInterface socketInterface;
@@ -11,7 +13,7 @@ public class ModelManager implements Model
   public ModelManager(SocketInterface socketInterface){
     this.socketInterface = socketInterface;
   }
-  @Override public User getUsername()
+  @Override public String getUsername() throws IOException
   {
     return socketInterface.getUsername();
   }

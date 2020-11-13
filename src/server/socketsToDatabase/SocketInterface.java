@@ -2,7 +2,9 @@ package server.socketsToDatabase;
 
 import shared.User;
 
+import java.io.IOException;
+
 public interface SocketInterface
 {
-  User getUsername();
+  String getUsername() throws IOException;
 }

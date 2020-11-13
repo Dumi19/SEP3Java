@@ -4,5 +4,5 @@ import shared.User;
 
 public interface Client
 {
-  User getUsername();
+  String getUsername();
 }

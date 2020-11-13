@@ -12,6 +12,6 @@ public class ModelManager implements Model
 
   @Override public String getUsername()
   {
-    return client.getUsername().getUsername();
+    return client.getUsername();
   }
 }

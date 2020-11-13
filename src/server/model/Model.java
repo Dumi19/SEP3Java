@@ -2,7 +2,9 @@ package server.model;
 
 import shared.User;
 
+import java.io.IOException;
+
 public interface Model
 {
-  User getUsername();
+  String getUsername() throws IOException;
 }

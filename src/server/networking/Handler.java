@@ -36,7 +36,7 @@ public class Handler implements Runnable
     try {
       Request request = (Request) inFromClient.readObject();
       if("Username".equals(request.getType())) {
-        User result = model.getUsername();
+        String result = model.getUsername();
         outToClient.writeObject(new Request("Username", result));
       }
     } catch (IOException | ClassNotFoundException e) {

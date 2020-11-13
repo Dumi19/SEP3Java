@@ -18,11 +18,11 @@ public class SocketClient implements Client
   }
 
 
-  @Override public User getUsername()
+  @Override public String getUsername()
   {
     try {
       Request response = request(null, "Username");
-      return (User)response.getArg();
+      return (String)response.getArg();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
