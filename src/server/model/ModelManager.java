@@ -1,8 +1,6 @@
 package server.model;
 
-import client.networking.Client;
 import server.socketsToDatabase.SocketInterface;
-import shared.User;
 
 import java.io.IOException;
 
@@ -13,8 +11,19 @@ public class ModelManager implements Model
   public ModelManager(SocketInterface socketInterface){
     this.socketInterface = socketInterface;
   }
-  @Override public String getUsername() throws IOException
+
+  @Override public String getObject(String toFetch) throws IOException
   {
-    return socketInterface.getUsername();
+    return socketInterface.getObject(toFetch);
+  }
+
+  @Override
+  public String addObject(Object object, String toAdd) throws IOException {
+    return socketInterface.addObject(object,toAdd);
+  }
+
+  @Override
+  public String removeObject(Object object, String toRemove)throws IOException {
+    return socketInterface.removeObject(object,toRemove);
   }
 }

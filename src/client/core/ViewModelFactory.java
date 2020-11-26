@@ -1,20 +1,29 @@
 package client.core;
 
-import client.view.adminLogin.LoginVM;
+import client.view.Ingredient.IngredientVM;
+import client.view.Navigation.NavigationVM;
 
 public class ViewModelFactory
 {
-  private LoginVM loginVm;
+  private NavigationVM navigationVM;
+  private IngredientVM ingredientVM;
   private ModelFactory mf;
 
   public ViewModelFactory(ModelFactory mf){
     this.mf = mf;
   }
 
-  public LoginVM getLoginVm(){
-    if(loginVm == null){
-      loginVm = new LoginVM(mf.getModel());
+  public NavigationVM getNavigationVM(){
+    if(navigationVM == null){
+      navigationVM = new NavigationVM(mf.getModel());
     }
-    return loginVm;
+    return navigationVM;
   }
+
+    public IngredientVM getIngredientVM() {
+      if(ingredientVM == null){
+        ingredientVM = new IngredientVM(mf.getModel());
+      }
+      return ingredientVM;
+    }
 }

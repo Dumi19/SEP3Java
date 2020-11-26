@@ -1,10 +1,10 @@
 package server.model;
 
-import shared.User;
-
 import java.io.IOException;
 
 public interface Model
 {
-  String getUsername() throws IOException;
+  String getObject(String toFetch) throws IOException;
+  String addObject(Object object, String toAdd)throws IOException;
+  String removeObject(Object arg, String type) throws IOException;
 }

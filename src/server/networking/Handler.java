@@ -1,15 +1,12 @@
 package server.networking;
 
 import server.model.Model;
-import shared.User;
 import transferobjects.Request;
 
-import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
 public class Handler implements Runnable
 {
@@ -22,7 +19,6 @@ public class Handler implements Runnable
   public Handler(Socket socket, Model model) {
     this.socket = socket;
     this.model = model;
-
     try {
       outToClient = new ObjectOutputStream(socket.getOutputStream());
       inFromClient = new ObjectInputStream(socket.getInputStream());
@@ -35,13 +31,19 @@ public class Handler implements Runnable
   public void run() {
     try {
       Request request = (Request) inFromClient.readObject();
-      if("Username".equals(request.getType())) {
-        String result = model.getUsername();
-        outToClient.writeObject(new Request("Username", result));
+      String result = "";
+      if(request.getArg() != null){
+        if(request.getType().contains("add")){
+          result = model.addObject(request.getArg(),request.getType());
+        }else if(request.getType().contains("remove")){
+          result = model.removeObject(request.getArg(),request.getType());
+        }
+      }else{
+        result = model.getObject(request.getType());
       }
+      outToClient.writeObject(new Request(null,result));
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
   }
-
 }

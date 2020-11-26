@@ -1,10 +1,10 @@
 package server.socketsToDatabase;
 
-import shared.User;
-
 import java.io.IOException;
 
 public interface SocketInterface
 {
-  String getUsername() throws IOException;
+  String getObject(String toFetch) throws IOException;
+  String addObject(Object object, String toAdd) throws IOException;
+  String removeObject(Object object, String toRemove) throws IOException;
 }

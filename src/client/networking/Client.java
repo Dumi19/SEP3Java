@@ -1,8 +1,8 @@
 package client.networking;
 
-import shared.User;
-
 public interface Client
 {
-  String getUsername();
+  String getObject(String toFetch);
+  String addObject(Object object, String toAdd);
+  String removeObject(Object object, String toRemoce);
 }
