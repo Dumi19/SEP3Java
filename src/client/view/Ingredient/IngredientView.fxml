@@ -12,7 +12,7 @@
    <children>
       <Pane layoutX="107.0" layoutY="50.0" prefHeight="244.0" prefWidth="367.0">
          <children>
-            <ListView fx:id="ingredients" layoutX="153.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="ingredients" layoutX="153.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="223.0" layoutY="14.0" text="Ingredients" />
             <Button fx:id="addButton" layoutX="105.0" layoutY="205.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
             <TextField fx:id="nameTextField" layoutX="14.0" layoutY="57.0" prefHeight="25.0" prefWidth="128.0" />
@@ -24,6 +24,7 @@
             <Line endX="64.0" layoutX="78.0" layoutY="131.0" startX="-66.0" />
             <Label layoutX="64.0" layoutY="36.0" text="Name" />
             <Button fx:id="removeButton" layoutX="39.0" layoutY="205.0" mnemonicParsing="false" onAction="#removeIngredient" text="Remove" />
+            <Button layoutX="312.0" layoutY="10.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
          </children>
       </Pane>
    </children>

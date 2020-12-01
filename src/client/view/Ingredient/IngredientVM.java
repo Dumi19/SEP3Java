@@ -22,7 +22,6 @@ public class IngredientVM {
 
     public void getIngredient(){
         String ingrInJsonString = model.getObject("getIngredients");
-        System.out.println(ingrInJsonString);
         ObservableList<Ingredient> obsListIngr = FXCollections.observableArrayList();
         try{
             List<Ingredient> ingredientList = Json.parseIngredientList(ingrInJsonString);
@@ -36,12 +35,17 @@ public class IngredientVM {
     ListProperty<Ingredient> ingredientListProperty(){return ingredients;}
 
     public String addIngredient(Ingredient ingrTemp) {
-        ingrTemp.ingredientId = ingredients.size();
+        ingrTemp.ingredientId = ingredients.size() + 1;
         return model.addObject(ingrTemp,"addIngredient");
     }
 
     public String removeIngredient(Ingredient toBeRemoved) {
         ingredients.remove(toBeRemoved);
         return model.removeObject(toBeRemoved, "removeIngredient");
+    }
+
+    public int getId() {
+        getIngredient();
+        return ingredients.size();
     }
 }

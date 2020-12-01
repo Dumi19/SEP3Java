@@ -1,0 +1,141 @@
+package client.view.Recipe;
+
+import client.model.Model;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import shared.Json;
+import transferobjects.Category;
+import transferobjects.Ingredient;
+import transferobjects.Recipe;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RecipeVM {
+    private Model model;
+    private ListProperty<Ingredient> existingIngredients;
+    private ListProperty<Ingredient> recipeIngredients;
+    private ListProperty<Recipe> existingRecipes;
+    private StringProperty recipeName;
+    private StringProperty instructions;
+    private StringProperty cookingTime;
+    private StringProperty ingredientName;
+    private StringProperty ingrNumber;
+    private StringProperty ingrUnitType;
+    private StringProperty categoryName;
+    private ObservableList<Ingredient> ingredientsInRecipeObs = FXCollections.observableArrayList();
+
+    public RecipeVM(Model model){
+        this.model = model;
+        existingIngredients = new SimpleListProperty<>();
+        recipeIngredients = new SimpleListProperty<>();
+        existingRecipes = new SimpleListProperty<>();
+        recipeName = new SimpleStringProperty();
+        instructions = new SimpleStringProperty();
+        cookingTime = new SimpleStringProperty();
+        ingredientName = new SimpleStringProperty();
+        ingrNumber = new SimpleStringProperty();
+        ingrUnitType = new SimpleStringProperty();
+        categoryName = new SimpleStringProperty();
+    }
+
+    public void getIngredients(){
+        String ingrInJsonString = model.getObject("getIngredients");
+        ObservableList<Ingredient> obsListIngr = FXCollections.observableArrayList();
+        try{
+            List<Ingredient> ingredientList = Json.parseIngredientList(ingrInJsonString);
+            obsListIngr.addAll(ingredientList);
+            existingIngredients.setValue(obsListIngr);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getRecipies(){
+        String recipeInJsonString = model.getObject("getRecipies");
+        ObservableList<Recipe> obsListRecipe = FXCollections.observableArrayList();
+        try{
+            List<Recipe> recipes = Json.parseRecipeList(recipeInJsonString);
+            obsListRecipe.addAll(recipes);
+            existingRecipes.setValue(obsListRecipe);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addIngredientToRecipe(Ingredient toAdd){
+        ingredientsInRecipeObs.add(toAdd);
+        recipeIngredients.set(ingredientsInRecipeObs);
+    }
+
+    public String addRecipy(){
+        if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
+                && !categoryName.get().isEmpty() && recipeIngredients.size() >= 2){
+            try{
+                Recipe temp = new Recipe();
+                temp.recipeName = recipeName.get();
+                temp.Instructions = instructions.get();
+                temp.cookingTime = Double.parseDouble(cookingTime.get());
+                List<Ingredient> ingredients = new ArrayList<>();
+                for(int i = 0; i < recipeIngredients.size(); i++){
+                    Ingredient toBeAdded = ingredientsInRecipeObs.get(i);
+                    toBeAdded.ingredientId = existingIngredients.size();
+                    existingIngredients.add(toBeAdded);
+                    ingredients.add(toBeAdded);
+                }
+                temp.ingredients = ingredients;
+                Category category = new Category();
+                category.categoryName = categoryName.get();
+                temp.category = category;
+                return model.addObject(temp,"addRecipe");
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+                return "Cooking time must be a number";
+            }
+        }else{
+            return "Missing inputs";
+        }
+    }
+
+    public void addIngredient(){
+        try{
+            Ingredient toAdd = new Ingredient();
+            toAdd.ingredientName = ingredientName.get();
+            double number = Double.parseDouble(ingrNumber.get());
+            String unitType = ingrUnitType.get();
+            toAdd.amountNumber = number;
+            toAdd.amountUnitType = unitType;
+            ingredientsInRecipeObs.add(toAdd);
+            recipeIngredients.set(ingredientsInRecipeObs);
+            ingredientName.set("");
+            ingrUnitType.set("");
+            ingrNumber.set("");
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void removeIngredient(Ingredient toRemove){
+        recipeIngredients.remove(toRemove);
+    }
+
+    ListProperty<Ingredient> getExistingIngredients(){return existingIngredients;}
+    ListProperty<Ingredient> getRecipeIngredients(){ return recipeIngredients; }
+    ListProperty<Recipe> getExistingRecipes(){ return existingRecipes; }
+    StringProperty getRecipeName(){ return recipeName; }
+    StringProperty getInstructions(){ return instructions; }
+    StringProperty getCookingTime(){ return cookingTime; }
+    StringProperty getIngredientName(){ return ingredientName; }
+    StringProperty getIngrNumber(){ return ingrNumber; }
+    StringProperty getIngrUnitType(){ return ingrUnitType; }
+    StringProperty getCategoryName(){return categoryName;}
+
+    public void updateRecipe(Recipe selectedItem) {
+
+    }
+}

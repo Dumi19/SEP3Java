@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Recipe implements Serializable {
-    public String name;
-    public String instructions;
+    public String recipeName;
+    public String Instructions;
     public double cookingTime;
     public List<Ingredient> ingredients;
     public Category category;
 
     public String getName() {
-        return name;
+        return recipeName;
     }
 
     public Category getCategory() {
@@ -27,11 +27,11 @@ public class Recipe implements Serializable {
     }
 
     public String getInstructions() {
-        return instructions;
+        return Instructions;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.recipeName = name;
     }
 
     public void setCategory(Category category) {
@@ -47,6 +47,10 @@ public class Recipe implements Serializable {
     }
 
     public void setInstructions(String instructions) {
-        this.instructions = instructions;
+        this.Instructions = instructions;
+    }
+
+    public String toString(){
+        return recipeName + "(" + cookingTime + "/" + category.categoryName + ")";
     }
 }

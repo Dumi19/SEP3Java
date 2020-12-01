@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.type.TypeReference;
 import transferobjects.Account;
 import transferobjects.Ingredient;
+import transferobjects.Recipe;
 import transferobjects.Shop;
 
 import java.io.IOException;
@@ -34,14 +35,18 @@ public class Json {
         return ingredients;
     }
 
+    public static List<Recipe> parseRecipeList(String src) throws IOException{
+        TypeReference<List<Recipe>> mapType = new TypeReference<List<Recipe>>() {};
+        List<Recipe> recipes = objectMapper.readValue(src,mapType);
+        return recipes;
+    }
+
     public static List<Shop> parseShopList(String src) throws IOException {
         List<Shop> shops;
         return shops = objectMapper.readValue(src, new TypeReference<List<Shop>>(){});
     }
 
     public static String convertObjectToString(Object obj)throws IOException{
-        Ingredient temp = (Ingredient)obj;
-        System.out.println(temp);
         return objectMapper.writeValueAsString(obj);
     }
 }

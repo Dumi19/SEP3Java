@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="536.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.Recipe.RecipeController">
+   <children>
+      <Pane layoutX="14.0" layoutY="2.0" prefHeight="645.0" prefWidth="573.0">
+         <children>
+            <ListView fx:id="existingIngredients" layoutX="403.0" layoutY="43.0" prefHeight="183.0" prefWidth="156.0" />
+            <Label layoutX="449.0" layoutY="14.0" text="Existing Ingredients" />
+            <ListView fx:id="recipeIngredients" layoutX="403.0" layoutY="290.0" prefHeight="267.0" prefWidth="156.0" />
+            <Label layoutX="461.0" layoutY="266.0" text="Recipy Ingredients" />
+            <ListView fx:id="existingRecipies" layoutX="26.0" layoutY="43.0" prefHeight="183.0" prefWidth="156.0" />
+            <Label layoutX="26.0" layoutY="23.0" text="Recipies" />
+            <Line endX="265.0" layoutX="294.0" layoutY="235.0" startX="-268.0" />
+            <Line endX="-78.5" endY="-245.0" layoutX="271.0" layoutY="275.0" startX="-78.5" startY="-40.5" />
+            <Button layoutX="487.0" layoutY="601.0" mnemonicParsing="false" onAction="#addRecipy" text="Add recipy" />
+            <TextField fx:id="recipeName" layoutX="26.0" layoutY="296.0" />
+            <Label layoutX="26.0" layoutY="275.0" text="Recipe Name" />
+            <TextArea fx:id="instructions" layoutX="26.0" layoutY="348.0" prefHeight="116.0" prefWidth="200.0" />
+            <Label layoutX="26.0" layoutY="331.0" text="Instructions" />
+            <TextField fx:id="cookingTime" layoutX="26.0" layoutY="488.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="26.0" layoutY="471.0" text="Cooking time in min" />
+            <Line endX="-135.0" endY="82.0" layoutX="371.0" layoutY="540.0" startX="-135.0" startY="-256.0" />
+            <TextField fx:id="ingrName" layoutX="244.0" layoutY="296.0" />
+            <Label layoutX="244.0" layoutY="275.0" text="Ingredient name" />
+            <Label layoutX="244.0" layoutY="331.0" text="Amount" />
+            <Label layoutX="244.0" layoutY="348.0" text="number" />
+            <Label layoutX="318.0" layoutY="348.0" text="unitType" />
+            <TextField fx:id="ingrNumber" layoutX="244.0" layoutY="365.0" prefHeight="25.0" prefWidth="62.0" />
+            <TextField fx:id="ingrunitType" layoutX="318.0" layoutY="365.0" prefHeight="25.0" prefWidth="73.0" />
+            <Button layoutX="244.0" layoutY="454.0" mnemonicParsing="false" onAction="#addIngredient" text="Add " />
+            <Label layoutX="244.0" layoutY="420.0" text="Manage Recipe Ingredients" />
+            <Button layoutX="246.0" layoutY="495.0" mnemonicParsing="false" onAction="#removeIngredient" text="Remove" />
+            <Line endX="72.0" layoutX="329.0" layoutY="557.0" startX="-94.5" />
+            <Line endX="72.0" layoutX="331.0" layoutY="410.0" startX="-94.5" />
+            <Button layoutX="308.0" layoutY="201.0" mnemonicParsing="false" onAction="#addToRecipe" text="Add To Recipe" />
+            <Button layoutX="200.0" layoutY="201.0" mnemonicParsing="false" onAction="#removeRecipe" text="Remove Recipe" />
+            <Button layoutX="202.0" layoutY="122.0" mnemonicParsing="false" onAction="#updateRecipe" text="Update Recipe" />
+            <Line endX="-3.0" endY="-45.0" layoutX="305.0" layoutY="71.0" startX="-3.0" startY="164.5" />
+            <TextField fx:id="categoryName" layoutX="26.0" layoutY="557.0" />
+            <Label layoutX="26.0" layoutY="541.0" text="Category Name" />
+            <Button layoutX="449.0" layoutY="601.0" mnemonicParsing="false" onAction="#openNavigation" text="Back" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

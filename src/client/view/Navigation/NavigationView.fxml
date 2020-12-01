@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.Navigation.NavigationController">
    <children>
-      <AnchorPane layoutX="15.0" layoutY="13.0" prefHeight="375.0" prefWidth="570.0">
+      <AnchorPane layoutX="15.0" prefHeight="375.0" prefWidth="570.0">
          <children>
             <Label layoutX="408.0" prefHeight="41.0" prefWidth="113.0" text="Managa Shop" textAlignment="JUSTIFY">
                <font>
@@ -28,6 +28,7 @@
             <Line endX="100.0" endY="-4.0" layoutX="435.0" layoutY="104.0" startX="99.5" startY="-73.5" />
             <Line endX="100.0" layoutX="434.0" layoutY="100.0" startX="-40.0" />
             <Button fx:id="goToIngredientButton" layoutX="266.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToIngredient" text="Manage Ingredient" />
+            <Button layoutX="36.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToRecipe" text="Manage Recipe" />
          </children>
       </AnchorPane>
    </children>

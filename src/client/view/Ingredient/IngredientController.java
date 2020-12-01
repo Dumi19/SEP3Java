@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import transferobjects.Amount;
 import transferobjects.Ingredient;
 
 import javax.swing.*;
@@ -37,8 +36,8 @@ public class IngredientController implements ViewController {
         if(!nameTextField.getText().isBlank() || !unitTypeTextField.getText().isEmpty()){
             try{
                 double number = (Double.parseDouble(numberTextField.getText()));
-                Amount amount = new Amount(number,unitTypeTextField.getText());
-                Ingredient ingrTemp = new Ingredient(nameTextField.getText(),amount,0);
+                String amountUnit = unitTypeTextField.getText();
+                Ingredient ingrTemp = new Ingredient(nameTextField.getText(),number,amountUnit,ivm.getId());
                 String answer = ivm.addIngredient(ingrTemp);
                 ivm.getIngredient();
                 JOptionPane.showMessageDialog(frame,answer);
@@ -61,5 +60,9 @@ public class IngredientController implements ViewController {
        }else{
            JOptionPane.showMessageDialog(frame,"No selected Ingredient to remove");
        }
+    }
+
+    public void onBack(){
+        vh.openNavigationView();
     }
 }

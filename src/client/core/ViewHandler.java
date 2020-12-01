@@ -14,6 +14,7 @@ public class ViewHandler
   private Scene navigationScene;
   private Scene shopScene;
   private Scene ingredientScene;
+  private Scene recipeScene;
 
   private ViewModelFactory vmf;
 
@@ -28,7 +29,7 @@ public class ViewHandler
     openNavigationView();
   }
 
-  private void openNavigationView(){
+  public void openNavigationView(){
     if(navigationScene == null){
       try{
         Parent root = loadFXML("../view/Navigation/NavigationView.fxml");
@@ -67,6 +68,20 @@ public class ViewHandler
       }
     }
     stage.setScene(ingredientScene);
+    stage.show();
+  }
+
+  public void openRecipeView(){
+    if(recipeScene == null){
+      try{
+        Parent root = loadFXML("../view/Recipe/RecipeView.fxml");
+        recipeScene = new Scene(root);
+        stage.setTitle("Recipe");
+      }catch (IOException e){
+        e.printStackTrace();;
+      }
+    }
+    stage.setScene(recipeScene);
     stage.show();
   }
 

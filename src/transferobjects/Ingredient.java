@@ -5,41 +5,36 @@ import java.io.Serializable;
 public class Ingredient implements Serializable {
     public int ingredientId;
     public String ingredientName;
-    public Amount Amount;
+    public double amountNumber;
+    public String amountUnitType;
 
     public Ingredient(){}
 
-    public Ingredient(String name, Amount amount, int ingredientId){
+    public Ingredient(String name, double amountNumber, String amountUnitType, int ingredientId){
         this.ingredientName = name;
-        this.Amount = amount;
+        this.amountNumber = amountNumber;
+        this.amountUnitType = amountUnitType;
         this.ingredientId = ingredientId;
     }
-
     public String getName() {
         return ingredientName;
     }
-
-    public Amount getAmount() {
-        return Amount;
-    }
-
     public int getIngredientId() {
         return ingredientId;
     }
-
+    public double getAmountNumber() { return amountNumber; }
+    public String getAmountUnitType() { return amountUnitType; }
     public void setName(String name) {
         this.ingredientName = name;
     }
-
-    public void setAmount(Amount amount) {
-        this.Amount = amount;
-    }
+    public void setAmountNumber(double amountNumber) { this.amountNumber = amountNumber; }
+    public void setAmountUnitType(String amountUnitType) { this.amountUnitType = amountUnitType; }
 
     public void setIngredientId(int ingredientId) {
         this.ingredientId = ingredientId;
     }
 
     public String toString(){
-        return ingredientName + " (" + Amount.number + "/" + Amount.unitType + ")";
+        return ingredientName + " (" + amountNumber + amountUnitType + ")";
     }
 }

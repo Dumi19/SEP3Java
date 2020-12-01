@@ -34,6 +34,10 @@ public class NavigationController implements ViewController {
         }
     }
 
+    public void goToRecipe(){
+        vh.openRecipeView();
+    }
+
     public void goToIngredient(){
         vh.openIngredientView();
     }
