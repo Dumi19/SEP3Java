@@ -3,16 +3,11 @@ package client.view.Recipe;
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import client.view.ViewController;
-import com.sun.jdi.InvocationException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import transferobjects.Ingredient;
-import transferobjects.Recipe;
+import javafx.scene.control.*;
+import transferobjects.RecipeRelated.Category;
+import transferobjects.RecipeRelated.Ingredient;
+import transferobjects.RecipeRelated.Recipe;
 
 import javax.swing.*;
 
@@ -22,12 +17,12 @@ public class RecipeController implements ViewController {
     @FXML private ListView<Ingredient> existingIngredients;
     @FXML private ListView<Ingredient> recipeIngredients;
     @FXML private ListView<Recipe> existingRecipies;
+    @FXML private ChoiceBox<Category> categoryCB;
     @FXML private TextField recipeName;
     @FXML private TextField cookingTime;
     @FXML private TextField ingrName;
     @FXML private TextField ingrNumber;
     @FXML private TextField ingrunitType;
-    @FXML private TextField categoryName;
     @FXML private TextArea instructions;
 
     private RecipeVM vm;
@@ -47,9 +42,10 @@ public class RecipeController implements ViewController {
         ingrNumber.textProperty().bindBidirectional(vm.getIngrNumber());
         ingrunitType.textProperty().bindBidirectional(vm.getIngrUnitType());
         instructions.textProperty().bindBidirectional(vm.getInstructions());
-        categoryName.textProperty().bindBidirectional(vm.getCategoryName());
+        categoryCB.setItems(vm.getCategoriesList());
         vm.getIngredients();
         vm.getRecipies();
+        vm.getCategories();
     }
 
     public void updateRecipe(){
@@ -60,7 +56,17 @@ public class RecipeController implements ViewController {
         }
     }
 
-    public void removeRecipe(){ }
+    public void removeRecipe(){
+        if(existingRecipies.getSelectionModel().getSelectedItem() != null){
+            try{
+                Recipe toRemove = existingRecipies.getSelectionModel().getSelectedItem();
+                String removed = vm.removeRecipe(toRemove);
+                JOptionPane.showMessageDialog(frame,removed);
+            }catch (NullPointerException e){}
+        }else{
+            JOptionPane.showMessageDialog(frame,"No recipe selected");
+        }
+    }
 
     public void addToRecipe(){
         if(existingIngredients.getSelectionModel().getSelectedItem() != null){
@@ -75,7 +81,11 @@ public class RecipeController implements ViewController {
     }
 
     public void addRecipy(){
-        JOptionPane.showMessageDialog(frame,vm.addRecipy());
+        if(categoryCB.getSelectionModel().getSelectedItem() != null && recipeIngredients.getSelectionModel().getSelectedItems().size() > 2){
+            JOptionPane.showMessageDialog(frame,vm.addRecipy(categoryCB.getSelectionModel().getSelectedItem(),recipeIngredients.getSelectionModel().getSelectedItems()));
+        }else{
+            JOptionPane.showMessageDialog(frame, "No Category");
+        }
     }
 
     public void addIngredient(){

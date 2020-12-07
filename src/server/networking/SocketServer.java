@@ -17,7 +17,6 @@ public class SocketServer
   public void startServer() {
     try {
       ServerSocket welcomeSocket = new ServerSocket(2910);
-
       while(true) {
         Socket socket = welcomeSocket.accept();
         new Thread(new Handler(socket, model)).start();

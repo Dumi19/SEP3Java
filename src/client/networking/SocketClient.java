@@ -1,7 +1,7 @@
 package client.networking;
 
-import transferobjects.Ingredient;
 import transferobjects.Request;
+import transferobjects.ShopRelated.Shop;
 
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
@@ -37,20 +37,9 @@ public class SocketClient implements Client
   }
 
   @Override
-  public String addObject(Object object, String toAdd) {
+  public String sendObject(Object object, String toDo) {
     try{
-      Request response = request(object,toAdd);
-      return (String)response.getArg();
-    }catch (IOException | ClassNotFoundException e){
-      e.printStackTrace();
-    }
-    return null;
-  }
-
-  @Override
-  public String removeObject(Object object, String toRemove) {
-    try{
-      Request response = request(object,toRemove);
+      Request response = request(object,toDo);
       return (String)response.getArg();
     }catch (IOException | ClassNotFoundException e){
       e.printStackTrace();

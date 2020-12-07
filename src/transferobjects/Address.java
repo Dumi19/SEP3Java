@@ -3,40 +3,39 @@ package transferobjects;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-    public String street;
-    public String streetNUmber;
-    public String city;
-    public int zipCode;
+    public String Street;
+    public String City;
+    public int ZipCode;
+
+    public Address(){}
+
+    public Address(String street, String city, int zipCode){
+        this.Street = street;
+        this.City = city;
+        this.ZipCode = zipCode;
+    }
 
     public int getZipCode() {
-        return zipCode;
+        return ZipCode;
     }
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public String getStreet() {
-        return street;
-    }
-
-    public String getStreetNUmber() {
-        return streetNUmber;
+        return Street;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.City = city;
     }
 
     public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setStreetNUmber(String streetNUmber) {
-        this.streetNUmber = streetNUmber;
+        this.Street = street;
     }
 
     public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+        this.ZipCode = zipCode;
     }
 }

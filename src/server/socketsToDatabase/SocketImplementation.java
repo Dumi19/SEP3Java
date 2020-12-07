@@ -1,6 +1,7 @@
 package server.socketsToDatabase;
 
 import shared.Json;
+import transferobjects.ShopRelated.Shop;
 
 import java.beans.PropertyChangeSupport;
 import java.io.*;
@@ -26,63 +27,32 @@ public class SocketImplementation implements SocketInterface
     byte[] message = new byte[24000];
     is.read(message, 0, message.length); // read the message
     received = new String(message, StandardCharsets.UTF_8);
-
+    System.out.println(received);
     socket.close();
     return received;
   }
 
   @Override
-  public String addObject(Object object, String toAdd) throws IOException {
-    Socket socket = new Socket("localhost", 2920);
-    DataInputStream is = new DataInputStream(socket.getInputStream());
-    DataOutputStream os = new DataOutputStream(socket.getOutputStream());
-
-    //Asking server if its ready
-    String rcv = "";
-    sendMessage(toAdd,os);
-    byte[] message = new byte[24000];
-    is.read(message, 0, message.length);
-    rcv = new String(message,StandardCharsets.UTF_8);
-
-    //Answer from server if ready
-    if(rcv.contains("ready")){
-      System.out.println("Server ready");
-      //Send object to server, receiving an "object added" message
-      System.out.println("trying to convert");
-      String toSend = Json.convertObjectToString(object);
-      sendMessage(toSend,os);
-      byte[] message2 = new byte[24000];
-      is.read(message2, 0, message2.length);
-      rcv = new String(message2,StandardCharsets.UTF_8);
-      socket.close();
-      return rcv;
-    }else{
-      socket.close();
-      return "Server connection failed";
-    }
-  }
-
-  @Override
-  public String removeObject(Object object, String toRemove)throws IOException {
+  public String sendObject(Object object, String toDo) throws IOException {
     Socket socket = new Socket("localhost", 2920);
     DataInputStream is = new DataInputStream(socket.getInputStream());
     DataOutputStream os = new DataOutputStream(socket.getOutputStream());
 
     //Asking if its ready
     String rcv = "";
-    sendMessage(toRemove,os);
+    sendMessage(toDo,os);
     byte[] message = new byte[24000];
-    is.read(message, 0, message.length);
+    is.read(message,0,message.length);
     rcv = new String(message,StandardCharsets.UTF_8);
 
     //Answer from server if ready
-    if(rcv.contains("ready")){
-      //Send object to server, receiving an "object added" message
+    if(rcv.contains("Ready")){
+      //Send object to server, receiving an "object updated/removed/Added" message
+      System.out.println("Sending object");
       String toSend = Json.convertObjectToString(object);
-      System.out.println("\n" + toSend + "\n \nTo Server \n");
       sendMessage(toSend,os);
       byte[] message2 = new byte[24000];
-      is.read(message2, 0, message2.length);
+      is.read(message2,0,message2.length);
       rcv = new String(message2,StandardCharsets.UTF_8);
       socket.close();
       return rcv;

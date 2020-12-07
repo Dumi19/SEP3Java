@@ -15,6 +15,7 @@ public class ViewHandler
   private Scene shopScene;
   private Scene ingredientScene;
   private Scene recipeScene;
+  private Scene deliveryScene;
 
   private ViewModelFactory vmf;
 
@@ -82,6 +83,20 @@ public class ViewHandler
       }
     }
     stage.setScene(recipeScene);
+    stage.show();
+  }
+
+  public void openDeliveryView(){
+    if(deliveryScene == null){
+      try{
+        Parent root = loadFXML("../view/Delivery/DeliveryView.fxml");
+        deliveryScene = new Scene(root);
+        stage.setTitle("Delivery");
+      }catch (IOException e){
+        e.printStackTrace();
+      }
+    }
+    stage.setScene(deliveryScene);
     stage.show();
   }
 

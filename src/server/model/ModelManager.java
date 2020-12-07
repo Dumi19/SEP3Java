@@ -18,12 +18,7 @@ public class ModelManager implements Model
   }
 
   @Override
-  public String addObject(Object object, String toAdd) throws IOException {
-    return socketInterface.addObject(object,toAdd);
-  }
-
-  @Override
-  public String removeObject(Object object, String toRemove)throws IOException {
-    return socketInterface.removeObject(object,toRemove);
+  public String sendObject(Object object, String toDo) throws IOException {
+    return socketInterface.sendObject(object,toDo);
   }
 }

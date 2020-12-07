@@ -8,9 +8,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.Json;
-import transferobjects.Category;
-import transferobjects.Ingredient;
-import transferobjects.Recipe;
+import transferobjects.RecipeRelated.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +27,8 @@ public class RecipeVM {
     private StringProperty ingrUnitType;
     private StringProperty categoryName;
     private ObservableList<Ingredient> ingredientsInRecipeObs = FXCollections.observableArrayList();
+    private ObservableList<Recipe> obsListRecipe = FXCollections.observableArrayList();
+    private ObservableList<Category> obsCategory = FXCollections.observableArrayList();
 
     public RecipeVM(Model model){
         this.model = model;
@@ -57,12 +57,21 @@ public class RecipeVM {
     }
 
     public void getRecipies(){
-        String recipeInJsonString = model.getObject("getRecipies");
-        ObservableList<Recipe> obsListRecipe = FXCollections.observableArrayList();
+        String recipeInJsonString = model.getObject("getRecipes");
         try{
             List<Recipe> recipes = Json.parseRecipeList(recipeInJsonString);
             obsListRecipe.addAll(recipes);
             existingRecipes.setValue(obsListRecipe);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getCategories() {
+        String categoryInJsonString = model.getObject("getCategories");
+        try{
+            List<Category> categories = Json.parseCategoryList(categoryInJsonString);
+            obsCategory.setAll(categories);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -73,42 +82,31 @@ public class RecipeVM {
         recipeIngredients.set(ingredientsInRecipeObs);
     }
 
-    public String addRecipy(){
+    public String addRecipy(Category category, List<Ingredient> ingredients){
         if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
                 && !categoryName.get().isEmpty() && recipeIngredients.size() >= 2){
             try{
-                Recipe temp = new Recipe();
-                temp.recipeName = recipeName.get();
-                temp.Instructions = instructions.get();
-                temp.cookingTime = Double.parseDouble(cookingTime.get());
-                List<Ingredient> ingredients = new ArrayList<>();
-                for(int i = 0; i < recipeIngredients.size(); i++){
-                    Ingredient toBeAdded = ingredientsInRecipeObs.get(i);
-                    toBeAdded.ingredientId = existingIngredients.size();
-                    existingIngredients.add(toBeAdded);
-                    ingredients.add(toBeAdded);
-                }
-                temp.ingredients = ingredients;
-                Category category = new Category();
-                category.categoryName = categoryName.get();
-                temp.category = category;
-                return model.addObject(temp,"addRecipe");
+                Recipe toAdd = new Recipe(existingRecipes.size() +1,recipeName.get(),
+                        instructions.get(),Double.parseDouble(cookingTime.get()));
+                toAdd.ingredients = ingredients;
+                String addRecipe = model.sendObject(toAdd,"addRecipe");
+                return addRecipe;
             }catch (NumberFormatException e){
                 e.printStackTrace();
                 return "Cooking time must be a number";
             }
         }else{
-            return "Missing inputs";
+            return "Missing input";
         }
     }
 
     public void addIngredient(){
         try{
             Ingredient toAdd = new Ingredient();
-            toAdd.ingredientName = ingredientName.get();
+            toAdd.IngredientName = ingredientName.get();
             double number = Double.parseDouble(ingrNumber.get());
             String unitType = ingrUnitType.get();
-            toAdd.amountNumber = number;
+            toAdd.number = number;
             toAdd.amountUnitType = unitType;
             ingredientsInRecipeObs.add(toAdd);
             recipeIngredients.set(ingredientsInRecipeObs);
@@ -127,15 +125,20 @@ public class RecipeVM {
     ListProperty<Ingredient> getExistingIngredients(){return existingIngredients;}
     ListProperty<Ingredient> getRecipeIngredients(){ return recipeIngredients; }
     ListProperty<Recipe> getExistingRecipes(){ return existingRecipes; }
+    ObservableList<Category> getCategoriesList(){return obsCategory;}
     StringProperty getRecipeName(){ return recipeName; }
     StringProperty getInstructions(){ return instructions; }
     StringProperty getCookingTime(){ return cookingTime; }
     StringProperty getIngredientName(){ return ingredientName; }
     StringProperty getIngrNumber(){ return ingrNumber; }
     StringProperty getIngrUnitType(){ return ingrUnitType; }
-    StringProperty getCategoryName(){return categoryName;}
 
     public void updateRecipe(Recipe selectedItem) {
 
+    }
+
+    public String removeRecipe(Recipe toRemove) {
+        existingIngredients.remove(toRemove);
+        return model.sendObject(toRemove,"removeRecipe");
     }
 }

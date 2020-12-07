@@ -33,11 +33,7 @@ public class Handler implements Runnable
       Request request = (Request) inFromClient.readObject();
       String result = "";
       if(request.getArg() != null){
-        if(request.getType().contains("add")){
-          result = model.addObject(request.getArg(),request.getType());
-        }else if(request.getType().contains("remove")){
-          result = model.removeObject(request.getArg(),request.getType());
-        }
+        result = model.sendObject(request.getArg(),request.getType());
       }else{
         result = model.getObject(request.getType());
       }

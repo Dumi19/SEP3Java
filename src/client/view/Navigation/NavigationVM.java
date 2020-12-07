@@ -6,8 +6,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.Json;
-import transferobjects.Ingredient;
-import transferobjects.Shop;
+import transferobjects.ShopRelated.Shop;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,10 +18,6 @@ public class NavigationVM {
     public NavigationVM(Model model){
         this.model = model;
         shopList = new SimpleListProperty<Shop>();
-    }
-
-    public void setShop(Shop selectedShop){
-        model.setSelectedShop(selectedShop);
     }
 
     ListProperty<Shop> shopListProperty(){

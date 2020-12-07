@@ -1,11 +1,14 @@
-package transferobjects;
+package transferobjects.AccountRelated;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Account implements Serializable {
     public String username;
     public String password;
     public String email;
+    public List<AccountAddress> accountAddressList;
+    public List<AccountBankInfo> accountBankInfos;
 
     public String getEmail() {
         return email;

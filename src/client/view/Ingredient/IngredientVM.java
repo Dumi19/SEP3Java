@@ -6,9 +6,11 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.Json;
-import transferobjects.Ingredient;
+import transferobjects.RecipeRelated.Ingredient;
+import transferobjects.RecipeRelated.IngredientRecipe;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientVM {
@@ -35,13 +37,14 @@ public class IngredientVM {
     ListProperty<Ingredient> ingredientListProperty(){return ingredients;}
 
     public String addIngredient(Ingredient ingrTemp) {
-        ingrTemp.ingredientId = ingredients.size() + 1;
-        return model.addObject(ingrTemp,"addIngredient");
+        ingrTemp.IngredientId = ingredients.size() + 1;
+        ingrTemp.IngredientRecipes = new ArrayList<IngredientRecipe>();
+        return model.sendObject(ingrTemp,"addIngredient");
     }
 
     public String removeIngredient(Ingredient toBeRemoved) {
         ingredients.remove(toBeRemoved);
-        return model.removeObject(toBeRemoved, "removeIngredient");
+        return model.sendObject(toBeRemoved, "removeIngredient");
     }
 
     public int getId() {
