@@ -1,4 +1,4 @@
-package transferobjects.RecipeRelated;
+package shared.transferObjects.RecipeRelated;
 
 import java.io.Serializable;
 

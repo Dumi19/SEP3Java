@@ -1,6 +1,6 @@
-package transferobjects;
+package shared.transferObjects;
 
-import transferobjects.RecipeRelated.Recipe;
+import shared.transferObjects.RecipeRelated.Recipe;
 
 import java.io.Serializable;
 

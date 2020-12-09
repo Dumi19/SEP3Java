@@ -1,7 +1,8 @@
 package server.networking;
 
 import server.model.Model;
-import transferobjects.Request;
+import shared.SocketObject.Request;
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

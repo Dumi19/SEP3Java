@@ -1,14 +1,15 @@
-package shared;
+package client.model;
 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-import transferobjects.AccountRelated.Account;
-import transferobjects.RecipeRelated.Category;
-import transferobjects.RecipeRelated.Ingredient;
-import transferobjects.RecipeRelated.Recipe;
-import transferobjects.ShopRelated.Shop;
-import transferobjects.ShopRelated.ShopIngredient;
+import shared.transferObjects.AccountRelated.Account;
+import shared.transferObjects.OrderRelated.Order;
+import shared.transferObjects.RecipeRelated.Category;
+import shared.transferObjects.RecipeRelated.Ingredient;
+import shared.transferObjects.RecipeRelated.Recipe;
+import shared.transferObjects.ShopRelated.Shop;
+import shared.transferObjects.ShopRelated.ShopIngredient;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,9 +59,14 @@ public class Json {
         return shopIngredients;
     }
 
+    public static List<Order> parseOrderList(String src)throws IOException{
+        TypeReference<List<Order>> mapType = new TypeReference<List<Order>>(){};
+        List<Order> orders = objectMapper.readValue(src,mapType);
+        return orders;
+    }
+
     public static String convertObjectToString(Object obj)throws IOException{
         String toReturn = objectMapper.writeValueAsString(obj);
-        System.out.println(toReturn);
         return toReturn;
     }
 }

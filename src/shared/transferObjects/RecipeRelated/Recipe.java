@@ -1,9 +1,4 @@
-package transferobjects.RecipeRelated;
-
-import transferobjects.RecipeRelated.Category;
-import transferobjects.RecipeRelated.Ingredient;
-import transferobjects.RecipeRelated.IngredientRecipe;
-import transferobjects.RecipeRelated.RecipeCategory;
+package shared.transferObjects.RecipeRelated;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +11,7 @@ public class Recipe implements Serializable {
     public double cookingTime;
     public List<Ingredient> ingredients;
     public String imageName;
-    public transferobjects.RecipeRelated.Category Category;
+    public shared.transferObjects.RecipeRelated.Category Category;
 
     public List<RecipeCategory> RecipeCategories;
     public List<IngredientRecipe> IngredientRecipes;

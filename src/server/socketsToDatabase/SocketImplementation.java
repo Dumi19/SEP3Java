@@ -1,7 +1,6 @@
 package server.socketsToDatabase;
 
-import shared.Json;
-import transferobjects.ShopRelated.Shop;
+import client.model.Json;
 
 import java.beans.PropertyChangeSupport;
 import java.io.*;

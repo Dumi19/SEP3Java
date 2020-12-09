@@ -1,6 +1,6 @@
-package transferobjects.AccountRelated;
+package shared.transferObjects.AccountRelated;
 
-import transferobjects.BankInfo;
+import shared.transferObjects.BankInfo;
 
 import java.io.Serializable;
 

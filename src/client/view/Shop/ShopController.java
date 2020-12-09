@@ -5,8 +5,8 @@ import client.core.ViewModelFactory;
 import client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import transferobjects.ShopRelated.Shop;
-import transferobjects.ShopRelated.ShopIngredient;
+import shared.transferObjects.ShopRelated.Shop;
+import shared.transferObjects.ShopRelated.ShopIngredient;
 
 import javax.swing.*;
 
@@ -49,14 +49,6 @@ public class ShopController implements ViewController {
         price.textProperty().bindBidirectional(vm.getPrice());
         amount.textProperty().bindBidirectional(vm.getAmount());
         unitType.textProperty().bindBidirectional(vm.getUnitType());
-    }
-
-    public void checkZipCode(){
-        try{
-            double toParse = Double.parseDouble(zipCode.getText());
-        }catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(frame,"ZipCode must be a number");
-        }
     }
 
     public void setSelectedShop(){

@@ -1,6 +1,5 @@
 package client;
 
-import client.core.CoreMain;
 import javafx.application.Application;
 
 

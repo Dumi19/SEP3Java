@@ -1,6 +1,6 @@
-package transferobjects;
+package shared.transferObjects;
 
-import transferobjects.AccountRelated.AccountBankInfo;
+import shared.transferObjects.AccountRelated.AccountBankInfo;
 
 import java.util.List;
 

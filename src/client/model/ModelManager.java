@@ -1,7 +1,7 @@
 package client.model;
 
 import client.networking.Client;
-import transferobjects.ShopRelated.Shop;
+import shared.transferObjects.ShopRelated.Shop;
 
 public class ModelManager implements Model
 {

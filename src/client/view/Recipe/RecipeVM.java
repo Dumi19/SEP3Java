@@ -7,11 +7,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import shared.Json;
-import transferobjects.RecipeRelated.*;
+import client.model.Json;
+import shared.transferObjects.RecipeRelated.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeVM {
@@ -82,7 +81,7 @@ public class RecipeVM {
         recipeIngredients.set(ingredientsInRecipeObs);
     }
 
-    public String addRecipy(Category category, List<Ingredient> ingredients){
+    public String addRecipe(Category category, List<Ingredient> ingredients){
         if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
                 && !categoryName.get().isEmpty() && recipeIngredients.size() >= 2){
             try{

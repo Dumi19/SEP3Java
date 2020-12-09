@@ -1,6 +1,6 @@
-package transferobjects.AccountRelated;
+package shared.transferObjects.AccountRelated;
 
-import transferobjects.Address;
+import shared.transferObjects.Address;
 
 import java.io.Serializable;
 

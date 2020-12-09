@@ -13,9 +13,6 @@ public class NavigationController implements ViewController {
         nvm = vmf.getNavigationVM();
     }
 
-    public void onShopAction(){
-    }
-
     public void goToRecipe(){
         vh.openRecipeView();
     }
@@ -25,4 +22,6 @@ public class NavigationController implements ViewController {
     }
 
     public void goToShop(){vh.openShopView();}
+
+    public void goToDeliveries(){vh.openDeliveryView();}
 }

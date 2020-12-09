@@ -1,4 +1,4 @@
-package transferobjects.ShopRelated;
+package shared.transferObjects.ShopRelated;
 
 import java.io.Serializable;
 import java.util.List;

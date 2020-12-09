@@ -1,7 +1,6 @@
 package client.networking;
 
-import transferobjects.Request;
-import transferobjects.ShopRelated.Shop;
+import shared.SocketObject.Request;
 
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;

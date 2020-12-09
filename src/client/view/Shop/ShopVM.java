@@ -7,13 +7,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import shared.Json;
-import transferobjects.Address;
-import transferobjects.ShopRelated.Shop;
-import transferobjects.ShopRelated.ShopIngredient;
-import transferobjects.ShopRelated.ShopVare;
+import client.model.Json;
+import shared.transferObjects.Address;
+import shared.transferObjects.ShopRelated.Shop;
+import shared.transferObjects.ShopRelated.ShopIngredient;
+import shared.transferObjects.ShopRelated.ShopVare;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

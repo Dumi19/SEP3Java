@@ -22,7 +22,7 @@
             <Label layoutX="26.0" layoutY="23.0" text="Recipies" />
             <Line endX="265.0" layoutX="294.0" layoutY="235.0" startX="-268.0" />
             <Line endX="-78.5" endY="-245.0" layoutX="271.0" layoutY="275.0" startX="-78.5" startY="-40.5" />
-            <Button layoutX="487.0" layoutY="601.0" mnemonicParsing="false" onAction="#addRecipy" text="Add recipy" />
+            <Button layoutX="487.0" layoutY="601.0" mnemonicParsing="false" onAction="#addRecipe" text="Add recipy" />
             <TextField fx:id="recipeName" layoutX="26.0" layoutY="296.0" />
             <Label layoutX="26.0" layoutY="275.0" text="Recipe Name" />
             <TextArea fx:id="instructions" layoutX="26.0" layoutY="348.0" prefHeight="116.0" prefWidth="200.0" />

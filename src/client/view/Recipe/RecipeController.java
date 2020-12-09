@@ -5,9 +5,9 @@ import client.core.ViewModelFactory;
 import client.view.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import transferobjects.RecipeRelated.Category;
-import transferobjects.RecipeRelated.Ingredient;
-import transferobjects.RecipeRelated.Recipe;
+import shared.transferObjects.RecipeRelated.Category;
+import shared.transferObjects.RecipeRelated.Ingredient;
+import shared.transferObjects.RecipeRelated.Recipe;
 
 import javax.swing.*;
 
@@ -80,9 +80,9 @@ public class RecipeController implements ViewController {
         }
     }
 
-    public void addRecipy(){
+    public void addRecipe(){
         if(categoryCB.getSelectionModel().getSelectedItem() != null && recipeIngredients.getSelectionModel().getSelectedItems().size() > 2){
-            JOptionPane.showMessageDialog(frame,vm.addRecipy(categoryCB.getSelectionModel().getSelectedItem(),recipeIngredients.getSelectionModel().getSelectedItems()));
+            JOptionPane.showMessageDialog(frame,vm.addRecipe(categoryCB.getSelectionModel().getSelectedItem(),recipeIngredients.getSelectionModel().getSelectedItems()));
         }else{
             JOptionPane.showMessageDialog(frame, "No Category");
         }

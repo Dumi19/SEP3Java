@@ -1,6 +1,6 @@
-package transferobjects.ShopRelated;
+package shared.transferObjects.ShopRelated;
 
-import transferobjects.Address;
+import shared.transferObjects.Address;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class Shop implements Serializable {
     public int Id;
     public String ShopName;
     public List<ShopIngredient> Vares = new ArrayList<>();
-    public transferobjects.Address Address;
+    public shared.transferObjects.Address Address;
     public List<ShopVare> shopVares;
 
     public Shop(){}
@@ -37,7 +37,7 @@ public class Shop implements Serializable {
 
     public int getId() { return Id; }
 
-    public transferobjects.Address getAddress() { return Address; }
+    public shared.transferObjects.Address getAddress() { return Address; }
 
     public List<ShopVare> getShopVares() { return shopVares; }
 
@@ -55,7 +55,7 @@ public class Shop implements Serializable {
 
     public void setId(int id) { Id = id; }
 
-    public void setAddress(transferobjects.Address address) { Address = address; }
+    public void setAddress(shared.transferObjects.Address address) { Address = address; }
 
     public void setShopVares(List<ShopVare> shopVares) { this.shopVares = shopVares; }
 

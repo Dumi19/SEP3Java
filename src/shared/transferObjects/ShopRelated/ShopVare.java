@@ -1,4 +1,4 @@
-package transferobjects.ShopRelated;
+package shared.transferObjects.ShopRelated;
 
 public class ShopVare {
     public int shopId;

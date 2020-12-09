@@ -5,9 +5,9 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import shared.Json;
-import transferobjects.RecipeRelated.Ingredient;
-import transferobjects.RecipeRelated.IngredientRecipe;
+import client.model.Json;
+import shared.transferObjects.RecipeRelated.Ingredient;
+import shared.transferObjects.RecipeRelated.IngredientRecipe;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class IngredientVM {
     ListProperty<Ingredient> ingredientListProperty(){return ingredients;}
 
     public String addIngredient(Ingredient ingrTemp) {
-        ingrTemp.IngredientId = ingredients.size() + 1;
+        ingrTemp.ingredientId = ingredients.size() + 1;
         ingrTemp.IngredientRecipes = new ArrayList<IngredientRecipe>();
         return model.sendObject(ingrTemp,"addIngredient");
     }

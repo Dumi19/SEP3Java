@@ -1,11 +1,11 @@
-package transferobjects.RecipeRelated;
+package shared.transferObjects.RecipeRelated;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class Ingredient implements Serializable {
-    public int IngredientId;
-    public String IngredientName;
+    public int ingredientId;
+    public String ingredientName;
     public double number;
     public String amountUnitType;
     public List<IngredientRecipe> IngredientRecipes;
@@ -13,12 +13,12 @@ public class Ingredient implements Serializable {
     public Ingredient(){}
 
     public Ingredient(String name, double amountNumber, String amountUnitType, int ingredientId){
-        this.IngredientName = name;
+        this.ingredientName = name;
         this.number = amountNumber;
         this.amountUnitType = amountUnitType;
-        this.IngredientId = ingredientId;
+        this.ingredientId = ingredientId;
     }
     public String toString(){
-        return IngredientName + " (" + number + amountUnitType + ")";
+        return ingredientName + " (" + number + amountUnitType + ")";
     }
 }

@@ -1,4 +1,4 @@
-package transferobjects.AccountRelated;
+package shared.transferObjects.AccountRelated;
 
 import java.io.Serializable;
 import java.util.List;
