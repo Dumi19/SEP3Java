@@ -1,6 +1,7 @@
 package shared.transferObjects;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Address implements Serializable {
     public String Street;
@@ -37,5 +38,19 @@ public class Address implements Serializable {
 
     public void setZipCode(int zipCode) {
         this.ZipCode = zipCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Address){
+            Address temp = (Address)o;
+            if(temp.City.equals(this.City) && temp.ZipCode == this.ZipCode && temp.Street.equals(this.Street)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 }

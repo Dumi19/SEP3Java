@@ -5,6 +5,7 @@ import shared.transferObjects.Address;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Shop implements Serializable {
     public int shopId;
@@ -61,6 +62,20 @@ public class Shop implements Serializable {
 
     @Override
     public String toString() {
-        return shopName + " (" + shopAddress.Street + ")";
+        return shopName + " (" + shopAddress.Street + ")" + " [" + shopAddress.City + shopAddress.ZipCode + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Shop){
+            Shop temp = (Shop) o;
+            if(temp.shopAddress == this.shopAddress && temp.shopName.equals(this.shopName)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 }

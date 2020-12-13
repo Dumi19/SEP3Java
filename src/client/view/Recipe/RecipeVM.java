@@ -82,8 +82,7 @@ public class RecipeVM {
     }
 
     public String addRecipe(Category category, List<Ingredient> ingredients){
-        if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
-                && !categoryName.get().isEmpty() && recipeIngredients.size() >= 2){
+        if(recipeIngredients.size() >= 2 && checkString()){
             try{
                 Recipe toAdd = new Recipe(existingRecipes.size() +1,recipeName.get(),
                         instructions.get(),Double.parseDouble(cookingTime.get()));
@@ -95,7 +94,17 @@ public class RecipeVM {
                 return "Cooking time must be a number";
             }
         }else{
-            return "Missing input";
+            return "Invalid Input: All input must be from the Alphabet and not empty";
+        }
+    }
+
+    private boolean checkString() {
+        if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
+                && !categoryName.get().isEmpty()){
+            String temp = recipeName.get() + instructions.get() + categoryName.get();
+            return temp.matches("^[a-zA-Z0-9]*$");
+        }else{
+            return false;
         }
     }
 
@@ -117,10 +126,6 @@ public class RecipeVM {
         }
     }
 
-    public void removeIngredient(Ingredient toRemove){
-        recipeIngredients.remove(toRemove);
-    }
-
     ListProperty<Ingredient> getExistingIngredients(){return existingIngredients;}
     ListProperty<Ingredient> getRecipeIngredients(){ return recipeIngredients; }
     ListProperty<Recipe> getExistingRecipes(){ return existingRecipes; }
@@ -131,13 +136,4 @@ public class RecipeVM {
     StringProperty getIngredientName(){ return ingredientName; }
     StringProperty getIngrNumber(){ return ingrNumber; }
     StringProperty getIngrUnitType(){ return ingrUnitType; }
-
-    public void updateRecipe(Recipe selectedItem) {
-
-    }
-
-    public String removeRecipe(Recipe toRemove) {
-        existingIngredients.remove(toRemove);
-        return model.sendObject(toRemove,"removeRecipe");
-    }
 }

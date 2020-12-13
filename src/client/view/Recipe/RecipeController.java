@@ -48,26 +48,6 @@ public class RecipeController implements ViewController {
         vm.getCategories();
     }
 
-    public void updateRecipe(){
-        try{
-            vm.updateRecipe(existingRecipies.getSelectionModel().getSelectedItem());
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void removeRecipe(){
-        if(existingRecipies.getSelectionModel().getSelectedItem() != null){
-            try{
-                Recipe toRemove = existingRecipies.getSelectionModel().getSelectedItem();
-                String removed = vm.removeRecipe(toRemove);
-                JOptionPane.showMessageDialog(frame,removed);
-            }catch (NullPointerException e){}
-        }else{
-            JOptionPane.showMessageDialog(frame,"No recipe selected");
-        }
-    }
-
     public void addToRecipe(){
         if(existingIngredients.getSelectionModel().getSelectedItem() != null){
             try{
@@ -90,14 +70,6 @@ public class RecipeController implements ViewController {
 
     public void addIngredient(){
         vm.addIngredient();
-    }
-
-    public void removeIngredient() {
-        if(recipeIngredients.getSelectionModel().getSelectedItem() != null){
-            vm.removeIngredient(recipeIngredients.getSelectionModel().getSelectedItem());
-        }else{
-            JOptionPane.showMessageDialog(frame,"No ingredient selected");
-        }
     }
 
     public void openNavigation(){

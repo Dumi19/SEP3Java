@@ -95,8 +95,8 @@ public class ShopVM {
 
     public String addShop() {
         Shop toAdd = new Shop();
-        if(emptyInput()){
-            return "Missing input";
+        if(!falseInput()){
+            return "Missing input, or invalid [Must be alphabetic]";
         }else{
             int zip = checkZipCode();
             if(zip == 0){
@@ -107,24 +107,37 @@ public class ShopVM {
                 toAdd.shopAddress = new Address(streetStreetNumber.get(),city.get(),zip);
                 toAdd.shopVares = null;
                 toAdd.vares = new ArrayList<>();
+                for(int i = 0; i< shops.size(); i++){
+                    if(toAdd.toString().equals(shops.get(i).toString())){
+                        return "Shop Already exist";
+                    }
+                }
                 return model.sendObject(toAdd,"addShop");
             }
         }
     }
 
     public String addShopIngredient(){
-        if(!ingredientName.get().isEmpty() && !price.get().isEmpty() && !amount.get().isEmpty() && !unitType.get().isEmpty() && selectedShop != null){
+        if(checkShopIngredient() && selectedShop != null){
             try{
                 double priceToAdd = Double.parseDouble(price.get());
                 double amountToAdd = Double.parseDouble(amount.get());
+                if(priceToAdd <= 0 || amountToAdd <= 0){
+                    return "Price and amount must be above 0";
+                }
                 List<ShopVare> shopVares = new ArrayList<>();
                 ShopIngredient temp = new ShopIngredient(shopIngredients.size() + 1,ingredientName.get(),priceToAdd, amountToAdd, unitType.get(),shopVares);
+                for(int i = 0; i < selectedShop.vares.size(); i++){
+                    if(selectedShop.vares.get(i).toString().equals(temp.toString())){
+                        return "Shop Ingredient already exist in shop";
+                    }
+                }
                 return linkShopIngredientToShop(temp);
             }catch (NumberFormatException e){
                 return "Price and amount must be numbers";
             }
         }else{
-            return "Missing input";
+            return "Missing input, or invalid [Must be alphabetic]";
         }
     }
 
@@ -143,9 +156,20 @@ public class ShopVM {
         }
     }
 
-    private boolean emptyInput() {
-        if(shopName.get().isEmpty() || streetStreetNumber.get().isEmpty() || city.get().isEmpty() || zipCode.get().isEmpty()){
-            return true;
+    private boolean falseInput() {
+        if(!shopName.get().isEmpty() || !streetStreetNumber.get().isEmpty() || !city.get().isEmpty() || !zipCode.get().isEmpty()){
+            String temp = shopName.get() + streetStreetNumber.get() + city.get();
+            return temp.matches("^[a-zA-Z0-9 ]*$");
+        }else{
+            return false;
+        }
+    }
+
+    private boolean checkShopIngredient() {
+        if(!ingredientName.get().isEmpty() && !price.get().isEmpty() && !amount.get().isEmpty() && !unitType.get().isEmpty()){
+            String temp = ingredientName.get() + unitType.get();
+            System.out.println(temp);
+            return temp.matches("^[a-zA-Z ]*$");
         }else{
             return false;
         }

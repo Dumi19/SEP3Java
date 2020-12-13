@@ -34,15 +34,20 @@ public class IngredientController implements ViewController {
     public void addIngredient(){
         if(!nameTextField.getText().isBlank() || !unitTypeTextField.getText().isEmpty()){
             try{
-                double number = (Double.parseDouble(numberTextField.getText()));
-                String amountUnit = unitTypeTextField.getText();
-                Ingredient ingrTemp = new Ingredient(nameTextField.getText(),number,amountUnit,ivm.getId());
-                String answer = ivm.addIngredient(ingrTemp);
-                ivm.getIngredient();
-                JOptionPane.showMessageDialog(frame,answer);
-                nameTextField.setText("");
-                numberTextField.setText("");
-                unitTypeTextField.setText("");
+                String temp = nameTextField.getText();
+                if(!temp.matches("^[a-zA-Z0-9]*$")){
+                    double number = (Double.parseDouble(numberTextField.getText()));
+                    String amountUnit = unitTypeTextField.getText();
+                    Ingredient ingrTemp = new Ingredient(nameTextField.getText(),number,amountUnit,ivm.getId());
+                    String answer = ivm.addIngredient(ingrTemp);
+                    ivm.getIngredient();
+                    JOptionPane.showMessageDialog(frame,answer);
+                    nameTextField.setText("");
+                    numberTextField.setText("");
+                    unitTypeTextField.setText("");
+                }else{
+                    JOptionPane.showMessageDialog(frame,"Input must be from the alphabet");
+                }
             }catch (NullPointerException e){
                 JOptionPane.showMessageDialog(frame,"Number input wrong");
             }
