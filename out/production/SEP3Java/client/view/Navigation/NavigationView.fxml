@@ -10,6 +10,7 @@
             <Button fx:id="goToIngredientButton" layoutX="145.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToIngredient" text="Manage Ingredient" />
             <Button layoutX="36.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToRecipe" text="Manage Recipe" />
             <Button layoutX="36.0" layoutY="75.0" mnemonicParsing="false" onAction="#goToShop" text="Manage Shop" />
+            <Button layoutX="145.0" layoutY="75.0" mnemonicParsing="false" onAction="#goToDeliveries" text="View Deliveries" />
          </children>
       </AnchorPane>
    </children>

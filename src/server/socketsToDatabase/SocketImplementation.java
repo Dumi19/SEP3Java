@@ -47,7 +47,6 @@ public class SocketImplementation implements SocketInterface
     //Answer from server if ready
     if(rcv.contains("Ready")){
       //Send object to server, receiving an "object updated/removed/Added" message
-      System.out.println("Sending object");
       String toSend = Json.convertObjectToString(object);
       sendMessage(toSend,os);
       byte[] message2 = new byte[24000];

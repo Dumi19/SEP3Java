@@ -21,9 +21,7 @@ public class ShopController implements ViewController {
     @FXML private TextField price;
     @FXML private TextField amount;
     @FXML private TextField unitType;
-    @FXML private ListView<ShopIngredient> ingredientsInShop;
-    @FXML private ListView<ShopIngredient> existingShopIngredients;
-    @FXML private ListView<ShopIngredient> shopIngredients1;
+    @FXML private ListView<ShopIngredient> shopIngredients;
     @FXML private ListView<Shop> shops;
     @FXML private ChoiceBox<Shop> cbShops;
 
@@ -36,11 +34,9 @@ public class ShopController implements ViewController {
         this.vh = vh;
         vm = vmf.getShopVM();
         vm.getAllData();
-        existingShopIngredients.itemsProperty().bind(vm.getExistingShopIngredients());
-        ingredientsInShop.itemsProperty().bind(vm.getIngredientsInShop());
         shops.itemsProperty().bind(vm.getShops());
         cbShops.setItems(vm.setChoiceBox());
-        shopIngredients1.itemsProperty().bind(vm.getExistingShopIngredients());
+        shopIngredients.itemsProperty().bind(vm.getIngredientsInShop());
         shopName.textProperty().bindBidirectional(vm.getShopName());
         streetStreetNumber.textProperty().bindBidirectional(vm.getStreetStreetNumber());
         zipCode.textProperty().bindBidirectional(vm.getZipCode());
@@ -49,12 +45,6 @@ public class ShopController implements ViewController {
         price.textProperty().bindBidirectional(vm.getPrice());
         amount.textProperty().bindBidirectional(vm.getAmount());
         unitType.textProperty().bindBidirectional(vm.getUnitType());
-    }
-
-    public void setSelectedShop(){
-        if(shops.getSelectionModel().getSelectedItem() != null){
-            vm.setSelectedShopForVares(shops.getSelectionModel().getSelectedItem());
-        }
     }
 
     public void setSelectShopCB(){
@@ -66,46 +56,15 @@ public class ShopController implements ViewController {
     public void addShop(){
         String response = vm.addShop();
         JOptionPane.showMessageDialog(frame,response);
-        vm.getAllData();
-    }
-
-    public void updateShop(){
-        String response = vm.updateShop();
-        JOptionPane.showMessageDialog(frame,response);
-    }
-
-    public void removeShop(){
-        if(shops.getSelectionModel().getSelectedItem() != null){
-            String response = vm.removeShop(shops.getSelectionModel().getSelectedItem());
-            JOptionPane.showMessageDialog(frame,response);
-        }else{
-            JOptionPane.showMessageDialog(frame,"No shop selected");
-        }
+        vm.getNewShops();
     }
 
     public void addExistingShopIngredient(){
-        String response = vm.addExistingShopIngredient();
+        String response = vm.addShopIngredient();
         JOptionPane.showMessageDialog(frame,response);
     }
 
-    public void updateExistingShopIngredient(){
-
-    }
-
-    public void removeExistingShopIngredient(){
-        if(shopIngredients1.getSelectionModel().getSelectedItem() != null){
-            String response = vm.removeShopIngredient(shopIngredients1.getSelectionModel().getSelectedItem());
-            JOptionPane.showMessageDialog(frame,response);
-        }else{
-            JOptionPane.showMessageDialog(frame,"No Shop Ingredient selected");
-        }
-    }
-
-    public void linkShopIngredientToShop(){
-        if(cbShops.getSelectionModel().getSelectedItem() != null && existingShopIngredients.getSelectionModel().getSelectedItem() != null){
-            vm.linkShopIngredientToShop(cbShops.getSelectionModel().getSelectedItem(),existingShopIngredients.getSelectionModel().getSelectedItem());
-        }else{
-            JOptionPane.showMessageDialog(frame,"Missing selected Shop or ShopIngredient");
-        }
+    public void onBack(){
+        vh.openNavigationView();
     }
 }

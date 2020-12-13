@@ -102,11 +102,11 @@ public class RecipeVM {
     public void addIngredient(){
         try{
             Ingredient toAdd = new Ingredient();
-            toAdd.IngredientName = ingredientName.get();
+            toAdd.ingredientName = ingredientName.get();
             double number = Double.parseDouble(ingrNumber.get());
             String unitType = ingrUnitType.get();
             toAdd.number = number;
-            toAdd.amountUnitType = unitType;
+            toAdd.unitType = unitType;
             ingredientsInRecipeObs.add(toAdd);
             recipeIngredients.set(ingredientsInRecipeObs);
             ingredientName.set("");

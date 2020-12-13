@@ -7,8 +7,8 @@ public class Account implements Serializable {
     public String username;
     public String password;
     public String email;
-    public List<AccountAddress> accountAddressList;
-    public List<AccountBankInfo> accountBankInfos;
+    public List<AccountAddress> AccountAddressList;
+    public List<AccountBankInfo> AccountBankInfos;
 
     public String getEmail() {
         return email;
