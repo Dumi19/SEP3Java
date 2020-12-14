@@ -5,11 +5,12 @@ import shared.transferObjects.RecipeRelated.Recipe;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class Order implements Serializable {
     public int orderId;
-    public LocalDateTime dateTime;
+    public Date dateTime;
     public double orderPrice;
     public int recipeId;
     public String username;
@@ -21,6 +22,6 @@ public class Order implements Serializable {
     }
 
     public String toString(){
-        return "[" + recipeId + "] " + username + " (" + recipe.toString() + ") " + dateTime.toString();
+        return "[Id: " + orderId + "]" + "\n" + "UserName: " +username + "\n" + "Recipe: " + recipe.recipeName + "\n" + "Date: " + dateTime.toString();
     }
 }

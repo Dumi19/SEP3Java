@@ -1,6 +1,6 @@
 package client.core;
 
-import client.view.Delevery.DeliveryVM;
+import client.view.Delivery.DeliveryVM;
 import client.view.Ingredient.IngredientVM;
 import client.view.Navigation.NavigationVM;
 import client.view.Recipe.RecipeVM;

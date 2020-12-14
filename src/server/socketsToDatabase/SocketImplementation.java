@@ -17,7 +17,7 @@ public class SocketImplementation implements SocketInterface
 
   @Override public String getObject(String toFetch) throws IOException
   {
-    Socket socket = new Socket("localhost", 2920);
+    Socket socket = new Socket("localhost", 2921);
     DataInputStream is = new DataInputStream(socket.getInputStream());
     DataOutputStream os = new DataOutputStream(socket.getOutputStream());
 

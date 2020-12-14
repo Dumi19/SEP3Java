@@ -105,7 +105,6 @@ public class ViewHandler
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource(path));
     Parent root = loader.load();
-
     ViewController ctrl = loader.getController();
     ctrl.init(this, vmf);
     return root;

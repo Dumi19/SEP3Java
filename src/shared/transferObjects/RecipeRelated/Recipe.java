@@ -11,7 +11,7 @@ public class Recipe implements Serializable {
     public double cookingTime;
     public List<Ingredient> ingredients;
     public String imageName;
-    public shared.transferObjects.RecipeRelated.Category Category;
+    public Category category;
 
     public List<RecipeCategory> RecipeCategories;
     public List<IngredientRecipe> IngredientRecipes;
@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
     }
 
     public Category getCategory() {
-        return Category;
+        return category;
     }
 
     public double getCookingTime() {
@@ -50,7 +50,7 @@ public class Recipe implements Serializable {
     }
 
     public void setCategory(Category category) {
-        this.Category = category;
+        this.category = category;
     }
 
     public void setCookingTime(double cookingTime) {
@@ -66,6 +66,6 @@ public class Recipe implements Serializable {
     }
 
     public String toString(){
-        return recipeName + "(" + cookingTime + "/" + Category.categoryName + ")";
+        return recipeName + "(" + cookingTime + "/" + category.categoryName + ")";
     }
 }

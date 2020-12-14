@@ -69,6 +69,7 @@ public class RecipeVM {
     public void getCategories() {
         String categoryInJsonString = model.getObject("getCategories");
         try{
+            System.out.println(categoryInJsonString);
             List<Category> categories = Json.parseCategoryList(categoryInJsonString);
             obsCategory.setAll(categories);
         }catch (IOException e){

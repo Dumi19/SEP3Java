@@ -1,4 +1,4 @@
-package client.view.Delevery;
+package client.view.Delivery;
 
 import client.model.Model;
 import client.model.Json;
