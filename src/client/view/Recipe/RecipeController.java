@@ -23,7 +23,9 @@ public class RecipeController implements ViewController {
     @FXML private TextField ingrName;
     @FXML private TextField ingrNumber;
     @FXML private TextField ingrunitType;
+    @FXML private TextField imangeName;
     @FXML private TextArea instructions;
+    @FXML private TextArea description;
 
     private RecipeVM vm;
     private ViewHandler vh;
@@ -42,6 +44,8 @@ public class RecipeController implements ViewController {
         ingrNumber.textProperty().bindBidirectional(vm.getIngrNumber());
         ingrunitType.textProperty().bindBidirectional(vm.getIngrUnitType());
         instructions.textProperty().bindBidirectional(vm.getInstructions());
+        description.textProperty().bindBidirectional(vm.getDescription());
+        imangeName.textProperty().bindBidirectional(vm.getImageName());
         categoryCB.setItems(vm.getCategoriesList());
         vm.getIngredients();
         vm.getRecipies();

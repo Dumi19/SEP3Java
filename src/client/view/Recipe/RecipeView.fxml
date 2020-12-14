@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="536.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.Recipe.RecipeController">
    <children>
-      <Pane layoutX="14.0" layoutY="8.0" prefHeight="645.0" prefWidth="573.0">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="645.0" prefWidth="573.0">
          <children>
             <ListView fx:id="existingIngredients" layoutX="403.0" layoutY="43.0" prefHeight="183.0" prefWidth="156.0" />
             <Label layoutX="449.0" layoutY="14.0" text="Existing Ingredients" />
@@ -27,25 +27,29 @@
             <Label layoutX="26.0" layoutY="275.0" text="Recipe Name" />
             <TextArea fx:id="instructions" layoutX="26.0" layoutY="348.0" prefHeight="116.0" prefWidth="200.0" />
             <Label layoutX="26.0" layoutY="331.0" text="Instructions" />
-            <TextField fx:id="cookingTime" layoutX="26.0" layoutY="488.0" prefHeight="25.0" prefWidth="149.0" />
-            <Label layoutX="26.0" layoutY="471.0" text="Cooking time in min" />
-            <Line endX="-135.0" endY="82.0" layoutX="371.0" layoutY="540.0" startX="-135.0" startY="-256.0" />
-            <TextField fx:id="ingrName" layoutX="244.0" layoutY="381.0" />
-            <Label layoutX="243.0" layoutY="357.0" text="Ingredient name" />
-            <Label layoutX="295.0" layoutY="436.0" text="Amount" />
-            <Label layoutX="254.0" layoutY="456.0" text="number" />
-            <Label layoutX="327.0" layoutY="456.0" text="unitType" />
-            <TextField fx:id="ingrNumber" layoutX="254.0" layoutY="476.0" prefHeight="25.0" prefWidth="62.0" />
-            <TextField fx:id="ingrunitType" layoutX="327.0" layoutY="476.0" prefHeight="25.0" prefWidth="73.0" />
-            <Button layoutX="355.0" layoutY="525.0" mnemonicParsing="false" onAction="#addIngredient" text="Add " />
-            <Label layoutX="246.0" layoutY="505.0" text="Manage Recipe Ingredients" />
-            <Line endX="72.0" layoutX="329.0" layoutY="557.0" startX="-94.5" />
-            <Line endX="72.0" layoutX="329.0" layoutY="423.0" startX="-94.5" />
+            <TextField fx:id="cookingTime" layoutX="243.0" layoutY="488.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="239.0" layoutY="471.0" text="Cooking time in min" />
+            <Line endX="-135.0" endY="-83.5" layoutX="371.0" layoutY="540.0" startX="-135.0" startY="-256.0" />
+            <TextField fx:id="ingrName" layoutX="244.0" layoutY="309.0" />
+            <Label layoutX="243.0" layoutY="288.0" text="Ingredient name" />
+            <Label layoutX="297.0" layoutY="350.0" text="Amount" />
+            <Label layoutX="254.0" layoutY="367.0" text="number" />
+            <Label layoutX="341.0" layoutY="367.0" text="unitType" />
+            <TextField fx:id="ingrNumber" layoutX="244.0" layoutY="384.0" prefHeight="25.0" prefWidth="62.0" />
+            <TextField fx:id="ingrunitType" layoutX="327.0" layoutY="384.0" prefHeight="25.0" prefWidth="73.0" />
+            <Button layoutX="354.0" layoutY="429.0" mnemonicParsing="false" onAction="#addIngredient" text="Add " />
+            <Label layoutX="245.0" layoutY="412.0" text="Manage Recipe Ingredients" />
+            <Line endX="72.0" layoutX="329.0" layoutY="457.0" startX="-94.5" />
+            <Line endX="72.0" layoutX="329.0" layoutY="339.0" startX="-94.5" />
             <Button layoutX="308.0" layoutY="201.0" mnemonicParsing="false" onAction="#addToRecipe" text="Add To Recipe" />
             <Line endX="-3.0" endY="-45.0" layoutX="305.0" layoutY="71.0" startX="-3.0" startY="164.5" />
-            <Label layoutX="26.0" layoutY="541.0" text="Category" />
+            <Label layoutX="242.0" layoutY="520.0" text="Category" />
             <Button layoutX="449.0" layoutY="601.0" mnemonicParsing="false" onAction="#openNavigation" text="Back" />
-            <ChoiceBox fx:id="categoryCB" layoutX="25.0" layoutY="558.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="categoryCB" layoutX="242.0" layoutY="537.0" prefWidth="150.0" />
+            <TextArea fx:id="description" layoutX="26.0" layoutY="512.0" prefHeight="116.0" prefWidth="200.0" />
+            <Label layoutX="26.0" layoutY="492.0" text="Description" />
+            <Label layoutX="241.0" layoutY="570.0" text="Image Name" />
+            <TextField fx:id="imangeName" layoutX="243.0" layoutY="589.0" />
          </children>
       </Pane>
    </children>

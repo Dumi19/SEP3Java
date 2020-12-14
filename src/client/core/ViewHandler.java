@@ -13,7 +13,6 @@ public class ViewHandler
   private Stage stage;
   private Scene navigationScene;
   private Scene shopScene;
-  private Scene ingredientScene;
   private Scene recipeScene;
   private Scene deliveryScene;
 
@@ -55,20 +54,6 @@ public class ViewHandler
       }
     }
     stage.setScene(shopScene);
-    stage.show();
-  }
-
-  public void openIngredientView(){
-    if(ingredientScene == null){
-      try {
-        Parent root = loadFXML("../view/Ingredient/IngredientView.fxml");
-        ingredientScene = new Scene(root);
-        stage.setTitle("Ingredient");
-      }catch (IOException e){
-        e.printStackTrace();
-      }
-    }
-    stage.setScene(ingredientScene);
     stage.show();
   }
 

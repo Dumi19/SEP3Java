@@ -17,10 +17,6 @@ public class NavigationController implements ViewController {
         vh.openRecipeView();
     }
 
-    public void goToIngredient(){
-        vh.openIngredientView();
-    }
-
     public void goToShop(){vh.openShopView();}
 
     public void goToDeliveries(){vh.openDeliveryView();}

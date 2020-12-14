@@ -1,7 +1,6 @@
 package client.core;
 
 import client.view.Delivery.DeliveryVM;
-import client.view.Ingredient.IngredientVM;
 import client.view.Navigation.NavigationVM;
 import client.view.Recipe.RecipeVM;
 import client.view.Shop.ShopVM;
@@ -9,7 +8,6 @@ import client.view.Shop.ShopVM;
 public class ViewModelFactory
 {
   private NavigationVM navigationVM;
-  private IngredientVM ingredientVM;
   private ShopVM shopVM;
   private RecipeVM recipeVM;
   private DeliveryVM deliveryVM;
@@ -24,13 +22,6 @@ public class ViewModelFactory
       navigationVM = new NavigationVM(mf.getModel());
     }
     return navigationVM;
-  }
-
-  public IngredientVM getIngredientVM() {
-    if(ingredientVM == null){
-      ingredientVM = new IngredientVM(mf.getModel());
-    }
-    return ingredientVM;
   }
 
   public RecipeVM getRecipeVM(){

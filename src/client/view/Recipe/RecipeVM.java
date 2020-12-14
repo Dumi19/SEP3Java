@@ -25,6 +25,8 @@ public class RecipeVM {
     private StringProperty ingrNumber;
     private StringProperty ingrUnitType;
     private StringProperty categoryName;
+    private StringProperty description;
+    private StringProperty imageName;
     private ObservableList<Ingredient> ingredientsInRecipeObs = FXCollections.observableArrayList();
     private ObservableList<Recipe> obsListRecipe = FXCollections.observableArrayList();
     private ObservableList<Category> obsCategory = FXCollections.observableArrayList();
@@ -41,6 +43,8 @@ public class RecipeVM {
         ingrNumber = new SimpleStringProperty();
         ingrUnitType = new SimpleStringProperty();
         categoryName = new SimpleStringProperty();
+        description = new SimpleStringProperty();
+        imageName = new SimpleStringProperty();
     }
 
     public void getIngredients(){
@@ -88,6 +92,9 @@ public class RecipeVM {
                 Recipe toAdd = new Recipe(existingRecipes.size() +1,recipeName.get(),
                         instructions.get(),Double.parseDouble(cookingTime.get()));
                 toAdd.ingredients = ingredients;
+                toAdd.description = description.get();
+                toAdd.imageName = imageName.get();
+                toAdd.category = category;
                 String addRecipe = model.sendObject(toAdd,"addRecipe");
                 return addRecipe;
             }catch (NumberFormatException e){
@@ -101,8 +108,8 @@ public class RecipeVM {
 
     private boolean checkString() {
         if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
-                && !categoryName.get().isEmpty()){
-            String temp = recipeName.get() + instructions.get() + categoryName.get();
+                && !categoryName.get().isEmpty() && description.get().isEmpty() && imageName.get().isEmpty()){
+            String temp = recipeName.get() + instructions.get() + categoryName.get() + description.get() + imageName.get();
             return temp.matches("^[a-zA-Z0-9]*$");
         }else{
             return false;
@@ -137,4 +144,6 @@ public class RecipeVM {
     StringProperty getIngredientName(){ return ingredientName; }
     StringProperty getIngrNumber(){ return ingrNumber; }
     StringProperty getIngrUnitType(){ return ingrUnitType; }
+    StringProperty getDescription(){return description;}
+    StringProperty getImageName(){return imageName;}
 }
