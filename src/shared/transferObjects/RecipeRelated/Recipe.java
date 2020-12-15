@@ -8,7 +8,7 @@ public class Recipe implements Serializable {
     public String recipeName;
     public String description;
     public String instructions;
-    public double cookingTime;
+    public int cookingTime;
     public List<Ingredient> ingredients;
     public String imageName;
     public Category category;
@@ -18,11 +18,10 @@ public class Recipe implements Serializable {
 
     public Recipe(){}
 
-    public Recipe(int IdRecipe, String recipeName, String instructions, double cookingTime){
+    public Recipe(int IdRecipe, String recipeName, String instructions){
         this.recipeId = IdRecipe;
         this.recipeName = recipeName;
         this.instructions = instructions;
-        this.cookingTime = cookingTime;
     }
 
     public String getName() {
@@ -33,7 +32,7 @@ public class Recipe implements Serializable {
         return category;
     }
 
-    public double getCookingTime() {
+    public int getCookingTime() {
         return cookingTime;
     }
 
@@ -53,7 +52,7 @@ public class Recipe implements Serializable {
         this.category = category;
     }
 
-    public void setCookingTime(double cookingTime) {
+    public void setCookingTime(int cookingTime) {
         this.cookingTime = cookingTime;
     }
 
@@ -66,6 +65,6 @@ public class Recipe implements Serializable {
     }
 
     public String toString(){
-        return recipeName + "(" + cookingTime + "/" + category.categoryName + ")";
+        return recipeName + "(" + cookingTime + ")";
     }
 }

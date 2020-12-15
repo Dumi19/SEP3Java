@@ -11,6 +11,7 @@ import client.model.Json;
 import shared.transferObjects.RecipeRelated.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeVM {
@@ -30,6 +31,7 @@ public class RecipeVM {
     private ObservableList<Ingredient> ingredientsInRecipeObs = FXCollections.observableArrayList();
     private ObservableList<Recipe> obsListRecipe = FXCollections.observableArrayList();
     private ObservableList<Category> obsCategory = FXCollections.observableArrayList();
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     public RecipeVM(Model model){
         this.model = model;
@@ -84,18 +86,20 @@ public class RecipeVM {
     public void addIngredientToRecipe(Ingredient toAdd){
         ingredientsInRecipeObs.add(toAdd);
         recipeIngredients.set(ingredientsInRecipeObs);
+        ingredients.add(toAdd);
     }
 
-    public String addRecipe(Category category, List<Ingredient> ingredients){
+    public String addRecipe(Category category){
         if(recipeIngredients.size() >= 2 && checkString()){
             try{
                 Recipe toAdd = new Recipe(existingRecipes.size() +1,recipeName.get(),
-                        instructions.get(),Double.parseDouble(cookingTime.get()));
+                        instructions.get());
+                toAdd.cookingTime = Integer.parseInt(cookingTime.get());
                 toAdd.ingredients = ingredients;
                 toAdd.description = description.get();
                 toAdd.imageName = imageName.get();
                 toAdd.category = category;
-                String addRecipe = model.sendObject(toAdd,"addRecipe");
+                String addRecipe = model.sendObject(toAdd,"addRecipe" + category.categoryName + ":");
                 return addRecipe;
             }catch (NumberFormatException e){
                 e.printStackTrace();
@@ -108,8 +112,8 @@ public class RecipeVM {
 
     private boolean checkString() {
         if(!recipeName.get().isEmpty() && !instructions.get().isEmpty() && !cookingTime.get().isEmpty()
-                && !categoryName.get().isEmpty() && description.get().isEmpty() && imageName.get().isEmpty()){
-            String temp = recipeName.get() + instructions.get() + categoryName.get() + description.get() + imageName.get();
+                && !description.get().isEmpty() && !imageName.get().isEmpty()){
+            String temp = recipeName.get() + instructions.get() + description.get() + imageName.get();
             return temp.matches("^[a-zA-Z0-9]*$");
         }else{
             return false;
@@ -129,6 +133,7 @@ public class RecipeVM {
             ingredientName.set("");
             ingrUnitType.set("");
             ingrNumber.set("");
+            ingredients.add(toAdd);
         }catch (NumberFormatException e){
             e.printStackTrace();
         }

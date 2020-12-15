@@ -65,8 +65,8 @@ public class RecipeController implements ViewController {
     }
 
     public void addRecipe(){
-        if(categoryCB.getSelectionModel().getSelectedItem() != null && recipeIngredients.getSelectionModel().getSelectedItems().size() > 2){
-            JOptionPane.showMessageDialog(frame,vm.addRecipe(categoryCB.getSelectionModel().getSelectedItem(),recipeIngredients.getSelectionModel().getSelectedItems()));
+        if(categoryCB.getSelectionModel().getSelectedItem() != null){
+            JOptionPane.showMessageDialog(frame,vm.addRecipe(categoryCB.getSelectionModel().getSelectedItem()));
         }else{
             JOptionPane.showMessageDialog(frame, "No Category");
         }
